@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>五子棋</title>
+	</head>
+
+	<body>
+		<canvas onclick="play(event);" id="can" width="600px" height="600px" 
+			style="background: url(img/bak.jpg);"></canvas>
+	</body>
+
+</html>
+<script>
+	var turn = 1;
+	var isEnd = false;
+	//第一步，初始化棋盘  15*15
+	var maps = new Array(15);
+	//遍历棋盘
+	for(var i = 0; i < 15; i++) {
+		maps[i] = new Array(15);
+		for(var j = 0; j < 15; j++) {
+			//存储数据
+			maps[i][j] = 0;
+		}
+	}
+	var can = document.getElementById('can');
+	var ctx = can.getContext('2d');
+	ctx.strokeStyle = 'gray';
+	//循环计算位置
+	for(var i = 0; i < 15; i++) {
+		for(var j = 0; j < 15; j++) {
+			//绘画
+			ctx.strokeRect(j * 40, i * 40, 40, 40);
+		}
+	}
+
+	//第二步，计算下棋位置
+	//定义变量来存储黑棋和白棋
+	var black = new Image();
+	var white = new Image();
+	black.src = "img/black.png";
+	white.src = "img/white.png";
+	
+	var isBlack = true;
+	
+	//定义下棋方法
+	function play(e) {
+		//得到偏移量
+		var leftOffset = 8;
+		var x = e.clientX - leftOffset;
+		var y = e.clientY - leftOffset;
+
+		//得到行和列
+		var col = parseInt((x - 20) / 40) + 1;
+		var row = parseInt((y - 20) / 40) + 1;
+		//判断黑白
+		if(isBlack)
+		{
+			ctx.drawImage(black, col * 40 - 20, row * 40 - 20);
+			isBlack = false;
+			maps[row][col]=2;//黑
+			iswin(2,row,col)
+		}
+		else{
+			ctx.drawImage(white, col * 40 - 20, row * 40 - 20);
+			isBlack = true;
+			maps[row][col]=1;//白
+			iswin(1,row,col)
+		}
+	}
+	
+	//判断是否胜利
+	function iswin(state,row,col)
+	{
+		//获取行和列
+		var orgrow = row;
+		var orgcol = col;
+		
+		var count = 1;//计数
+		
+		//水平
+		while(col-1>0&&maps[row][col-1]==state)
+		{
+			count++;
+			col--;
+		}
+		 
+		row = orgrow; 
+		col = orgcol;
+		
+		while(col+1<15&&maps[row][col+1]==state)
+		{
+			count++;
+			col++;
+		}
+		
+		//垂直
+		while(row-1>0&&maps[row-1][col]==state)
+		{
+			count++;
+			row--;
+		}
+		 
+		row = orgrow; 
+		col = orgcol;
+		
+		while(row+1<15&&maps[row+1][col]==state)
+		{
+			count++;
+			row++;
+		}
+		
+		//对角线
+		//左下
+		while(row-1>0&&col+1<15&&maps[row-1][col+1]==state)
+		{
+			count++;
+			col++;
+			row--;
+		}
+		 
+		row = orgrow; 
+		col = orgcol;
+		
+		while(row+1<15&&col-1>0&&maps[row+1][col-1]==state)
+		{
+			count++;
+			col--;
+			row++;
+		}
+//		右下
+		while(row-1>0&&col-1>0&&maps[row-1][col-1]==state)
+		{
+			count++;
+			col--;
+			row--;
+		}
+		 
+		row = orgrow; 
+		col = orgcol;
+		
+		while(row+1<15&&col+1<15&&maps[row+1][col+1]==state)
+		{
+			count++;
+			col++;
+			row++;
+		}
+		
+		if(count>=5)
+		{
+		//判断哪方胜利
+		if(state==2)
+		{
+			alert('黑棋胜利！')
+		}else{
+			alert('白棋胜利！')
+		}
+		}
+	}
+	
+</script>

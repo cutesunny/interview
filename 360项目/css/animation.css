@@ -1,0 +1,69 @@
+@keyframes move01{
+    from{  transform: translate(-543px);  }
+    to{  transform: translate(0px);  }
+}
+@keyframes move02{
+    from{  transform: translate(-697px);  }
+    to{  transform: translate(0px);  }
+}
+@keyframes move03{
+    from{  transform: translate(-850px);  }
+    to{  transform: translate(0px);  }
+}
+@keyframes move04{
+    from{  transform: translate(-1005px); }
+    to{  transform: translate(0px);  }
+}
+@keyframes move05{
+    from{  transform: translate(-1159px);  }
+    to{  transform: translate(0px);  }
+}
+@keyframes ravovle {
+    from{ transform: rotate(0deg);}
+    to{ transform: rotate(1080deg);}
+}
+#intro_1{
+    animation: move01 2.94s linear;
+}
+#intro_2{
+    animation: move02 3.74s linear;
+}
+#intro_3{
+    animation: move03 4.59s linear;
+}
+#intro_4{
+    animation: move04 5.39s linear;
+}
+#intro_5{
+    animation: move05 6.25s linear;
+}
+#intro_5 i{
+    animation: ravovle 6.28s linear;
+}
+#icon ul li i:hover{
+    animation: jump 3s linear;
+}
+@keyframes jump {
+ from {transform: rotate(0deg);  opacity: 1 }
+    25%{transform: rotate(10deg); opacity: .5}
+    50%{transform: rotate(-10deg); opacity: 1}
+    75%{transform: rotate(10deg); opacity: .5}
+    to{transform: rotate(0deg); opacity: 1}
+}
+#hujiao b:hover{
+    animation: change 3s linear;
+}
+@keyframes change{
+    from {
+        transform: rotateY(0deg);
+        opacity: 1;
+    }
+    50%{
+        transform: rotateY(-90deg);
+        opacity: 1;
+    }
+    to{
+        transform: rotateY(0deg);
+        opacity: 1;
+    }
+}

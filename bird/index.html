@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		
+	</head>
+	<body>
+		
+		<div id="background" style="border: 5px solid green; width: 800px; height: 500px; margin: 0 auto; background-image: url(img/gamebg.jpg); position:relative; overflow: hidden;" onClick="birdobj.jump()">
+			
+	        <div id="bird" style="background: url(img/bird.png) center center; width: 40px; height: 28px; position: absolute; top: 300px; left: 100px;"></div>
+			 
+			 <div class="pipe" style="height: 450px; width: 60px; position: absolute; left: 500px; top: -300px;">
+				<img src="img/pipe.png" style="margin-bottom: 150px;" />
+				<img src="img/pipe.png" />
+			</div>
+			<div class="pipe" style="height: 450px; width: 60px; position: absolute; left: 800px; top: -300px;">
+				<img src="img/pipe.png" style="margin-bottom: 150px;" />
+				<img src="img/pipe.png" />
+			</div>
+			<div class="pipe" style="height: 450px; width: 60px; position: absolute; left: 1100px; top: -300px;">
+				<img src="img/pipe.png" style="margin-bottom: 150px;" />
+				<img src="img/pipe.png" />
+			</div>
+			<div id="gameover" style="font-family: '微软雅黑'; margin-left: 300px; margin-top: 150px;color: black;position: absolute;z-index: 1;">
+				<h1>Game Over!</h1>
+				<h2>您的分数为：<span id="gscore">0</span>分！</h2>
+				<button onClick="reLoad()" value="重新开始">重新开始</button>
+			</div>
+			<div  style="margin-left: 750px; position: absolute; z-index: 1;">
+				<h1 id="score" style="color: black; ">0</h1>
+			</div>
+		</div>
+	</body>
+</html>
+<script>
+ 	var score = 0;
+ 	var jifen = 1;
+	var bg={
+		x:0,
+		y:0,
+		mx:-1,
+		my:0,
+		move:function(){
+			this.x+=this.mx;
+		},
+		draw:function(){
+			background.style.backgroundPosition= this.x+'px 0px';
+		}
+	}
+	
+	var birdobj={
+		x:100,
+		y:300,
+		mx:0,
+		my:2,
+		ax:0,
+		ay:1,
+		width:30,
+		height:30,
+		flystyle:'center',
+		ct:0,
+		fly:function(){
+			if(this.ct%31==0)
+			{
+				this.flystyle='top';
+			}
+			if(this.ct%21==0)
+			{
+				this.flystyle='center';
+			}
+			if(this.ct%11==0)
+			{
+				this.flystyle='bottom';
+			}
+			this.ct++;
+			if(this.ct==1000)
+			{
+				this.ct=0;
+			}
+		},
+		draw:function(){
+			
+			bird.style.backgroundPosition=this.flystyle +' center';
+			bird.style.top=this.y+'px';
+		},
+		move:function(){
+			this.my=this.my+this.ay*1;
+			this.y=this.y+this.my*1;
+		},
+		jump:function(){
+			this.my=-10;
+		}
+	}
+	
+	var pipes=document.getElementsByClassName('pipe');
+	var guans=[];
+	for(var i=0;i<pipes.length;i++)
+	{
+		guans[i]={
+			x:500+300*i,
+			y:-300+ Math.round( (Math.random()*100) * (Math.random()>0.5?1:-1) ),
+			mx:-2,
+			my:0,
+			width:60,
+			height:450,
+			move:function(){
+				this.x+=this.mx;
+				
+			},
+			draw:function(){
+				this.pipe.style.left=this.x+'px';
+				this.pipe.style.top=this.y+'px';
+			},
+			
+			check:function(){
+				if(this.x<=-65)
+				{
+					this.x=800+65;
+					this.y=-300+ Math.round( (Math.random()*100) * (Math.random()>0.5?1:-1) );
+				}
+			}
+		}
+		guans[i].pipe=pipes[i];
+	}
+
+	
+	 var time = setInterval(function(){
+		bg.move();
+		bg.draw();
+		birdobj.fly();
+		birdobj.draw();
+		birdobj.move();
+		for(var i=0;i<guans.length;i++){
+			guans[i].move();
+			guans[i].draw();
+			guans[i].check();
+			if(birdobj.x>guans[i].x+guans[i].width){
+				caculateScore(i);
+			}
+			if(birdobj.y-birdobj.height>=500){	
+				gameOver();	
+			}
+			if(isRect(birdobj.x,birdobj.y,birdobj.width,birdobj.height,guans[i].x,guans[i].y,guans[i].width,guans[i].height)){
+				gameOver();
+			}
+			if(isRect(birdobj.x,birdobj.y,birdobj.width,birdobj.height,guans[i].x,guans[i].y+620,guans[i].width,guans[i].height)){
+				gameOver();
+			}
+		}
+	},30);
+	
+	
+	function isRect(x1,y1,w1,h1,x2,y2,w2,h2){
+		if(x1<=x2&&x1+w1<=x2){
+			return false;
+		}else if(x1>=x2&&x1>=x2+w2){
+			return false;	
+		}else if(y1>=y2&&y1>=y2+h2){
+			return false;
+		}else if(y1<=y2&&y1+h1<=y2){
+			return false;
+		}
+		return true;
+	}
+	
+	function caculateScore(i){
+		if(jifen==i){}
+		else{
+			jifen = i;
+			score++;
+		}
+		document.getElementById("score").innerHTML = ""+score;
+		document.getElementById("gscore").innerHTML = ""+score;
+	}
+	
+	function reLoad(){
+		window.location.reload();
+	}
+	
+	gameover.style.display='none';
+	function gameOver(){
+		clearInterval(time);
+		gameover.style.display='block';
+	}
+</script>
+

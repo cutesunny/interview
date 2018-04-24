@@ -1,0 +1,92 @@
+section .content{
+    width: 910px;
+    margin: 0 auto;
+    height: 1200px;
+    position: relative;
+    /*border: 1px solid red;*/
+}
+section .content .n1{
+    text-align: center;
+    /*color: #a0a0a0;*/
+    margin-top: 40px;
+    /*border: 1px solid gray;*/
+}
+section .content .icon ul{
+    margin-top: 60px;
+    /*border: 1px solid red;*/
+}
+section .content .icon ul li{
+    width: 160px;
+    height: 76px;
+    float: left;
+   /* border: 1px solid red;*/
+    margin-right: 18px;
+    margin-top: 40px;
+}
+section .content .icon ul .c1{
+    background: url("../images/bj/iconlist_4.png") no-repeat 0 0;
+}
+section .content .icon ul .c2{
+    background: url("../images/bj/iconlist_4.png") no-repeat -172px 0;
+}
+section .content .icon ul .c3{
+    background: url("../images/bj/iconlist_4.png") no-repeat 0 -76px;
+}
+section .content .icon ul .c4{
+    background: url("../images/bj/iconlist_4.png") no-repeat -172px -76px;
+}
+section .content .icon ul .c5{
+    background: url("../images/bj/iconlist_4.png") no-repeat 0 -152px;
+}
+section .content .icon ul .c6{
+    background: url("../images/bj/iconlist_4.png") no-repeat -172px -152px;
+}
+section .content .icon ul .c7{
+    background: url("../images/bj/iconlist_4.png") no-repeat 0 -232px;
+}
+section .content .icon ul .c8{
+    background: url("../images/bj/iconlist_4.png") no-repeat 0 -308px;
+}
+section .content .icon ul .c9{
+    background: url("../images/bj/iconlist_4.png") no-repeat -172px -308px;
+}
+.c10{
+    background: url("../images/bj/iconlist_4.png") no-repeat -172px -230px;
+}
+section .content h2{
+    position: absolute;
+    top:-30px;
+    left: 5px;
+}
+section .content .table1{
+    width: 900px;
+    height:285px;
+    position: absolute;
+    top:430px ;
+    /*border: 1px solid #a8a8a8;*/
+    left: 5px;
+    background: url("../images/bj/03.png") no-repeat -440px -607px;
+}
+section .content h3{
+    position: absolute;
+    top:-30px;
+    left: 5px;
+}
+section .content .table2{
+    width: 900px;
+    height:285px;
+    position: absolute;
+    top:750px ;
+    /*border: 1px solid #a8a8a8;*/
+    left: 5px;
+    background: url("../images/bj/03.png") no-repeat -440px -970px;
+}
+.m1{
+    text-align: center;
+    display: block;
+    margin-top: 50px;
+    margin-bottom:18px;
+    position: absolute;
+    top: 1100px;
+    margin-left: 35%;
+}

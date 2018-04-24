@@ -1,0 +1,59 @@
+section .content{
+    width: 900px;
+    margin: 0 auto;
+    /*border: 1px solid red;*/
+}
+section .top p{
+    width: 176px;
+    height: 55px;
+    background: url("../images/bj/iconlist_4.png") no-repeat 0 -384px;
+    /*margin-top:42px;*/
+    /*margin-left: 440px;*/
+    /*border: 1px solid red;*/
+}
+section .content ul li{
+    height: 162px;
+    /*border-bottom: 1px solid #e2e2e2;*/
+    position: relative;
+}
+section .content ul li h3{
+    height: 28px;
+    position: absolute;
+    left: 70px;
+    top: 45px;
+}
+section .content ul li  b{
+    display: block;
+    height: 28px;
+    width: 21px;
+    background:url("../images/bj/iconlist_4.png") no-repeat -345px 0px;
+    position: absolute;
+    left: 40px;
+    top: 45px;
+}
+section .content ul li p{
+    position: absolute;
+    top: 90px;
+    left: 70px;
+    color: #6b6b6b;
+}
+section .content ul li  i{
+    display: block;
+    height: 28px;
+    width: 21px;
+    background:url("../images/bj/iconlist_4.png") no-repeat -345px -40px;
+    position: absolute;
+    left: 40px;
+    top: 100px;
+}
+.m1{
+     text-align: center;
+     display: block;
+     margin-top: 50px;
+     margin-bottom:18px;
+ }
+.m1 a{
+    color: red;
+    font-size: 16px;
+    border-bottom: 1px solid red;
+}
